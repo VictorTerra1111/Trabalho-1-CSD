@@ -10,12 +10,9 @@ module counter (
 );
 
     reg pulse;
-
-    
     typedef enum logic [1:0] {EDIT, RUN} state_t; 
     state_t state;
-
-
+    
     always @(posedge clk_100MHz_i or negedge reset_i) begin
         if (!reset_i) begin
             seconds_o <= 0;
