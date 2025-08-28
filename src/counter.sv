@@ -6,6 +6,7 @@ module counter (
     output logic [5:0] seconds_o,   // 0-59
     output logic [5:0] minutes_o,   // 0-59
     output logic [4:0] hours_o      // 0-23
+    output reg [5:0] d1, d2, d3, d4, d5, d6, d7, d8
 );
 
     reg pulse;
