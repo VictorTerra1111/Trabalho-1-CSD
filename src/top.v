@@ -1,9 +1,9 @@
 module top(
     input  logic clk_100MHz_i,
     input  logic reset_i,      
-    input  logic increment_i,    
-    input  logic decrement_i,    
-    input  logic config_i,   
+    input  logic increment_i,    // cima M18
+    input  logic decrement_i,    // baixo P18
+    input  logic config_i,       // meio  N17
     
     output logic [7:0] d1, d2, d3, d4, d5, d6, d7, d8, 
     output logic [7:0] an,                             
