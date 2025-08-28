@@ -1,7 +1,12 @@
 `timescale 1us/1ns
 
 module tb;
-    
+      logic clk_100MHz_i;
+      logic reset_i;      
+      logic increment_i;    
+      logic decrement_i;    
+      logic config_i;
+
 top dut (
     
 );
