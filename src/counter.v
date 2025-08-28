@@ -1,26 +1,40 @@
-module count #(
-	parameter [31:0] COUNT_WIDTH = 8
-) (
-	input wire clk_i,
-	input wire rstn_i,
-	input wire next_i,
-	output wire [COUNT_WIDTH - 1:0] count_o
+module counter (
+    input  logic clk_100MHz_i,
+    input  logic reset_i,           
+    input  logic seconds_pulse_i,   
+    
+    output logic [5:0] seconds_o,   // 0-59
+    output logic [5:0] minutes_o,   // 0-59
+    output logic [4:0] hours_o      // 0-23
 );
-	reg [COUNT_WIDTH - 1:0] count_reg;
-	reg next_i_dly;
 
-	always @(posedge clk_i, negedge rstn_i) begin
-		if (rstn_i == 1'b0) begin
-			count_reg <= {(COUNT_WIDTH){1'b0}};
-			next_i_dly <= 1'b0;
-		end else begin
-			next_i_dly <= next_i;
-			if (next_i == 1'b1 && next_i_dly == 1'b0) begin
-				count_reg <= count_reg + 1;
-			end
-		end
-	end
+    reg pulse;
 
-	assign count_o = count_reg;
+    always @(posedge clk_100MHz_i or negedge reset_i) begin
+        if (!reset_i) begin
+            seconds_o <= 0;
+            minutes_o <= 0;
+            hours_o   <= 0;
+            pulse   <= 0;
+        end else begin
+            pulse <= seconds_pulse_i;
 
+            if (seconds_pulse_i && !pulse) begin
+                if (seconds_o == 59) begin
+                    seconds_o <= 0;
+                    if (minutes_o == 59) begin
+                        minutes_o <= 0;
+                        if (hours_o == 23)
+                            hours_o <= 0;
+                        else
+                            hours_o <= hours_o + 1;
+                    end else begin
+                        minutes_o <= minutes_o + 1;
+                    end
+                end else begin
+                    seconds_o <= seconds_o + 1;
+                end
+            end
+        end
+    end
 endmodule
