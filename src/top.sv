@@ -14,10 +14,17 @@ module top(
     logic [5:0] seconds_o, minutes_o;
     logic [4:0] hours_o;
 
+    logic [5:0] d1, d2, d3, d4, d5, d6, d7, d8;
+    
     clock_divisor div (
         .clk_100MHz_i(clk_100MHz_i),
         .reset_i(reset_i),
-        .seconds_pulse_o(second_tick)       
+        .seconds_pulse_o(second_tick)      
+        /*
+        .d1(d1), .d2(d2), .d3(d3), .d4(d4),
+        .d5(d5), .d6(d6), .d7(d7), .d8(d8),
+        
+        */
     );
 
     counter c (
