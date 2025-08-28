@@ -16,7 +16,7 @@ module top(
 
     clock_divisor div (
         .clk_100MHz_i(clk_100MHz_i),
-        .reset(reset_i),
+        .reset_i(reset_i),
         .second(second_tick)       
     );
 
