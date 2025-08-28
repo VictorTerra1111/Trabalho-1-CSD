@@ -17,7 +17,7 @@ module top(
     clock_divisor div (
         .clk_100MHz_i(clk_100MHz_i),
         .reset_i(reset_i),
-        .second(second_tick)       
+        .seconds_pulse_o(second_tick)       
     );
 
     counter c (
@@ -50,7 +50,7 @@ module top(
         .debkey_o(btn_mode_db)
     );
 
-    dspl_drv_NexysA7 display_inst(
+    dspl_drv_8dig display_inst(
         .clock(clk_100MHz_i),
         .reset(reset_i),
         .d1(d1), .d2(d2), .d3(d3), .d4(d4),
