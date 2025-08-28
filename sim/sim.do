@@ -2,14 +2,14 @@ if {[file isdirectory work]} {vdel -all -lib work}
 vlib work
 vmap work work
 
-vlog -work work ../HDL/BullsCows.sv
-vlog -work work ../HDL/dspl_drv_NexysA7.sv
-vlog -work work ../HDL/edge_detector_s.sv
-vlog -work work ../HDL/pontuacao.sv
-vlog -work work ../HDL/Top_module.sv
+vlog -work work ../src/clock_divisor.v
+vlog -work work ../src/counter.v
+vlog -work work ../src/dspl_drv_NexysA7.v
+vlog -work work ../src/debounce.v
+vlog -work work ../src/top.v
 
-vlog -work work tb_final.sv
-vsim -voptargs=+acc work.tb_final
+vlog -work work tb.v
+vsim -voptargs=+acc work.tb
 
 quietly set StdArithNoWarnings 1
 quietly set StdVitalGlitchNoWarnings 1
